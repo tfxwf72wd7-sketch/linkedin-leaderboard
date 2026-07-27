@@ -1,0 +1,93 @@
+name: LinkedIn Leaderboard
+
+on:
+  workflow_dispatch:
+    inputs:
+      force_publish:
+        description: "Publish chart even if the day is incomplete"
+        type: boolean
+        default: false
+  push:
+    branches: [main]
+    # Test runs: pushing code changes triggers a run automatically.
+    # Commits made by the workflow itself (GITHUB_TOKEN) never re-trigger.
+  schedule:
+    # Every 30 min, 07:00-19:30 UTC (= 8am-8:30pm UK in summer, 7am-7:30pm in winter)
+    - cron: "0,30 7-19 * * *"
+
+concurrency:
+  group: leaderboard
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Early exit if today is already final
+        id: gate
+        run: |
+          python - <<'EOF' >> "$GITHUB_OUTPUT"
+          import json, datetime, zoneinfo, os
+          today = datetime.datetime.now(zoneinfo.ZoneInfo("Europe/London")).date().isoformat()
+          hist = json.load(open("data/history.json"))
+          final = hist.get("published", {}).get(today) == "final"
+          force = os.environ.get("FORCE") == "1"
+          print(f"run={'false' if (final and not force) else 'true'}")
+          EOF
+        env:
+          FORCE: ${{ (inputs.force_publish || github.event_name == 'push') && '1' || '' }}
+
+      - name: Install dependencies
+        if: steps.gate.outputs.run == 'true'
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Run scrape + score + chart
+        if: steps.gate.outputs.run == 'true'
+        env:
+          LI_AT: ${{ secrets.LI_AT }}
+          JSESSIONID: ${{ secrets.JSESSIONID }}
+          FORCE_PUBLISH: ${{ inputs.force_publish && '1' || '' }}
+          PUBLISH_PARTIAL: ${{ github.event_name == 'push' && '1' || '' }}
+        run: python run.py
+
+      - name: Build redacted debug summary
+        if: steps.gate.outputs.run == 'true' && always()
+        run: python debug_summary.py || true
+
+      - name: Commit results
+        if: steps.gate.outputs.run == 'true' && always()
+        run: |
+          git config user.name "leaderboard-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data chart debug/summary.json 2>/dev/null || true
+          if ! git diff --cached --quiet; then
+            git pull --rebase --autostash origin main
+            git commit -m "Leaderboard update $(date -u +'%Y-%m-%d %H:%M')"
+            git push
+          else
+            echo "No changes to commit."
+          fi
+
+      - name: Upload debug payloads
+        if: steps.gate.outputs.run == 'true' && always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: debug-${{ github.run_id }}
+          path: |
+            debug/
+            !debug/summary.json
+          retention-days: 2
+          if-no-files-found: ignore

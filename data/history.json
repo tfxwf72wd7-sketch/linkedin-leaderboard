@@ -1,0 +1,18 @@
+{
+  "days": {
+    "2026-07-13": {"alex": 5.5, "liz": 2.5, "source": "seeded-from-chart"},
+    "2026-07-14": {"alex": 4.0, "liz": 4.0, "source": "seeded-from-chart"},
+    "2026-07-15": {"alex": 4.5, "liz": 3.5, "source": "seeded-from-chart"},
+    "2026-07-16": {"alex": 3.0, "liz": 5.0, "source": "seeded-from-chart"},
+    "2026-07-17": {"alex": 3.0, "liz": 5.0, "source": "seeded-from-chart"},
+    "2026-07-19": {"alex": 2.0, "liz": 6.0, "source": "seeded-from-chart"},
+    "2026-07-20": {"alex": 4.5, "liz": 3.5, "source": "seeded-from-chart"},
+    "2026-07-21": {"alex": 3.5, "liz": 4.5, "source": "seeded-from-chart"},
+    "2026-07-22": {"alex": 2.0, "liz": 6.0, "source": "seeded-from-chart"},
+    "2026-07-23": {"alex": 2.5, "liz": 5.5, "source": "seeded-from-chart"},
+    "2026-07-24": {"alex": 5.0, "liz": 3.0, "source": "seeded-from-chart"},
+    "2026-07-25": {"alex": 2.0, "liz": 6.0, "source": "seeded-from-chart"},
+    "2026-07-26": {"alex": 3.5, "liz": 4.5, "source": "seeded-from-chart"}
+  },
+  "published": {}
+}

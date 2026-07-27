@@ -50,11 +50,25 @@ def iter_dicts(obj):
             yield from iter_dicts(x)
 
 
+DELTA_RE = re.compile(r"delta(?::|%3A)(-?\d+)")
+
+
 def day_marker_from_url(url: str) -> str | None:
-    """Classify a GraphQL request URL as today/yesterday if it says so."""
+    """Classify a GraphQL request URL as today/yesterday.
+
+    LinkedIn's leaderboard GraphQL calls carry a `delta` variable when they
+    request a past day (delta:1 = yesterday). The feeds for today's board
+    have no delta (or delta:0). Confirmed live 2026-07-27.
+    """
+    m = DELTA_RE.search(url)
+    if m:
+        return "yesterday" if int(m.group(1)) != 0 else "today"
     if YESTERDAY_MARKERS.search(url):
         return "yesterday"
     if TODAY_MARKERS.search(url):
+        return "today"
+    if "GameConnectionsEntities" in url:
+        # Leaderboard feed with no delta variable = the Today tab's data.
         return "today"
     return None
 

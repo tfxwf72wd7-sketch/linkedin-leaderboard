@@ -18,6 +18,11 @@ by https://alexwaite.org/linkedin-leaderboard/.
 When the LinkedIn cookies expire, replace the two secrets - nothing else
 needs to change.
 
+#To obtain the new LinkedIn cookies:#
+In Chrome, while logged in to LinkedIn: press CTRL-SHIFT-I → Application tab → Cookies → https://www.linkedin.com, and copy the values of li_at and JSESSIONID. Paste both as described below.
+
+Use these two LinkedIn cookies as secrets in GitHub, as follows: On the new repository's page, click Settings (top menu) → in the left sidebar: Secrets and variables → Actions AMEND the two secret keys.
+
 ## Scoring rules
 - tango, zip, queens, mini-sudoku, crossclimb, patches: fastest time wins
   the point; identical times = half a point each.

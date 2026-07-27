@@ -119,41 +119,52 @@ def select_today(page) -> bool:
     return False
 
 
-MORE_BUTTON = re.compile(r"(?i)\b(show|see|load)\s+more\b")
+def expand_leaderboard(page) -> dict:
+    """Reveal the FULL leaderboard by clicking "Show more" until it's gone.
 
-
-def expand_leaderboard(page) -> int:
-    """Click the "Show more" button until the full table is revealed.
-
-    LinkedIn only returns the top of the leaderboard on first load; each
-    click requests the next page (start:10, start:20, ...). Returns the
-    number of clicks performed. Capped defensively at 25.
+    LinkedIn only returns the top of the table on first load; each click
+    requests the next page. The control isn't reliably a <button> with an
+    accessible name, so this scrolls to the bottom and JS-clicks any
+    button/link whose text matches show/see/load more. Returns diagnostics:
+    clicks made, the texts clicked, and every "...more..." control seen.
     """
-    clicks = 0
-    for _ in range(25):
-        btn = None
+    info = {"clicks": 0, "clicked_texts": [], "candidates": []}
+    try:
+        info["candidates"] = page.evaluate(
+            "() => [...document.querySelectorAll('button, a')]"
+            ".map(e => (e.textContent || '').trim().toLowerCase())"
+            ".filter(t => t && t.includes('more'))"
+            ".map(t => t.slice(0, 60)).slice(0, 20)")
+    except Exception:
+        pass
+    for _ in range(30):
         try:
-            loc = page.get_by_role("button", name=MORE_BUTTON)
-            loc.first.wait_for(state="visible", timeout=2000)
-            btn = loc.first
+            page.evaluate("window.scrollTo(0, document.body.scrollHeight)")
         except Exception:
-            # Button may only appear once its position scrolls into view
-            page.mouse.wheel(0, 1600)
-            page.wait_for_timeout(800)
-            try:
-                loc = page.get_by_role("button", name=MORE_BUTTON)
-                loc.first.wait_for(state="visible", timeout=1500)
-                btn = loc.first
-            except Exception:
-                break
+            pass
+        page.wait_for_timeout(700)
+        clicked = None
         try:
-            btn.scroll_into_view_if_needed()
-            btn.click()
-            clicks += 1
-            page.wait_for_timeout(1800)
+            clicked = page.evaluate(
+                """() => {
+                    const re = /(show|see|load)\\s*more/i;
+                    const els = [...document.querySelectorAll('button, a')];
+                    const b = els.find(e => re.test(e.textContent || '') && !e.disabled);
+                    if (b) {
+                        b.scrollIntoView({block: 'center'});
+                        b.click();
+                        return (b.textContent || '').trim().slice(0, 60);
+                    }
+                    return null;
+                }""")
         except Exception:
+            clicked = None
+        if not clicked:
             break
-    return clicks
+        info["clicks"] += 1
+        info["clicked_texts"].append(clicked)
+        page.wait_for_timeout(1800)
+    return info
 
 
 def scrape_game(context, slug: str) -> dict:
@@ -179,7 +190,7 @@ def scrape_game(context, slug: str) -> dict:
 
     # Reveal the FULL leaderboard: LinkedIn only serves the top of the
     # table initially; "Show more" must be clicked repeatedly.
-    more_clicks = expand_leaderboard(page)
+    more = expand_leaderboard(page)
 
     # A couple of scrolls as a fallback for lazy-loaded content
     for _ in range(3):
@@ -198,7 +209,7 @@ def scrape_game(context, slug: str) -> dict:
     (DEBUG_DIR / f"{slug}.json").write_text(json.dumps({
         "url": url,
         "clicked_today": clicked_today,
-        "more_clicks": more_clicks,
+        "more": more,
         "captured": captured,
         "body_text": body_text,
     }, ensure_ascii=False)[:8_000_000], encoding="utf-8")
@@ -216,7 +227,7 @@ def scrape_game(context, slug: str) -> dict:
 
     pools = todays if todays else unmarked
     result = {"alex": None, "liz": None, "clicked_today": clicked_today,
-              "more_clicks": more_clicks,
+              "more": more,
               "n_payloads": len(captured), "ambiguous": not todays and len(unmarked) > 1}
     for pool in pools:
         for e in pool:

@@ -119,6 +119,43 @@ def select_today(page) -> bool:
     return False
 
 
+MORE_BUTTON = re.compile(r"(?i)\b(show|see|load)\s+more\b")
+
+
+def expand_leaderboard(page) -> int:
+    """Click the "Show more" button until the full table is revealed.
+
+    LinkedIn only returns the top of the leaderboard on first load; each
+    click requests the next page (start:10, start:20, ...). Returns the
+    number of clicks performed. Capped defensively at 25.
+    """
+    clicks = 0
+    for _ in range(25):
+        btn = None
+        try:
+            loc = page.get_by_role("button", name=MORE_BUTTON)
+            loc.first.wait_for(state="visible", timeout=2000)
+            btn = loc.first
+        except Exception:
+            # Button may only appear once its position scrolls into view
+            page.mouse.wheel(0, 1600)
+            page.wait_for_timeout(800)
+            try:
+                loc = page.get_by_role("button", name=MORE_BUTTON)
+                loc.first.wait_for(state="visible", timeout=1500)
+                btn = loc.first
+            except Exception:
+                break
+        try:
+            btn.scroll_into_view_if_needed()
+            btn.click()
+            clicks += 1
+            page.wait_for_timeout(1800)
+        except Exception:
+            break
+    return clicks
+
+
 def scrape_game(context, slug: str) -> dict:
     url = f"https://www.linkedin.com/games/{slug}/results/leaderboard/connections/"
     page = context.new_page()
@@ -140,10 +177,14 @@ def scrape_game(context, slug: str) -> dict:
     clicked_today = select_today(page)
     page.wait_for_timeout(3000)
 
-    # A couple of scrolls in case our players are below the fold
-    for _ in range(4):
+    # Reveal the FULL leaderboard: LinkedIn only serves the top of the
+    # table initially; "Show more" must be clicked repeatedly.
+    more_clicks = expand_leaderboard(page)
+
+    # A couple of scrolls as a fallback for lazy-loaded content
+    for _ in range(3):
         page.mouse.wheel(0, 1600)
-        page.wait_for_timeout(1200)
+        page.wait_for_timeout(1000)
 
     body_text = ""
     try:
@@ -157,6 +198,7 @@ def scrape_game(context, slug: str) -> dict:
     (DEBUG_DIR / f"{slug}.json").write_text(json.dumps({
         "url": url,
         "clicked_today": clicked_today,
+        "more_clicks": more_clicks,
         "captured": captured,
         "body_text": body_text,
     }, ensure_ascii=False)[:8_000_000], encoding="utf-8")
@@ -174,6 +216,7 @@ def scrape_game(context, slug: str) -> dict:
 
     pools = todays if todays else unmarked
     result = {"alex": None, "liz": None, "clicked_today": clicked_today,
+              "more_clicks": more_clicks,
               "n_payloads": len(captured), "ambiguous": not todays and len(unmarked) > 1}
     for pool in pools:
         for e in pool:

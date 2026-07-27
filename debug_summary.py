@@ -13,7 +13,7 @@ from pathlib import Path
 import scraper
 
 DEBUG = Path("debug")
-OURS = {scraper.ALEX_URN: "alex", scraper.LIZ_URN: "liz"}
+OURS = {scraper.ALEX_URN: "alex", scraper.LIZ_URN: "elizabeth"}
 
 
 def strip_url(url: str) -> str:
@@ -68,6 +68,7 @@ def main() -> None:
             continue
         d = json.loads(f.read_text(encoding="utf-8"))
         game = {"clicked_today": d.get("clicked_today"),
+                "more_clicks": d.get("more_clicks"),
                 "n_captured": len(d.get("captured", [])),
                 "body_has_today_tab": bool(re.search(r"(?i)\btoday\b", d.get("body_text") or "")),
                 "body_has_yesterday": bool(re.search(r"(?i)yesterday", d.get("body_text") or "")),

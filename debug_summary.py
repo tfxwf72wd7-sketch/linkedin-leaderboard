@@ -30,8 +30,10 @@ def strip_url(url: str) -> str:
         if k in ("queryId", "q", "decorationId"):
             parts.append(f"{k}={v}")
         elif k == "variables":
-            names = re.findall(r"(\w+):", v)
-            parts.append(f"variables({','.join(sorted(set(names)))})")
+            # Keep values (they reveal which day a feed is for) but mask
+            # anything that looks like a person's profile URN.
+            safe = re.sub(r"(?i)(fsd_?profile(?:%3A|:))[\w-]+", r"\1<masked>", v)
+            parts.append(f"variables={safe}")
         else:
             parts.append(k)
     return path + ("?" + "&".join(parts) if parts else "")

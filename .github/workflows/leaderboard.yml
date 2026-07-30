@@ -12,8 +12,8 @@ on:
     # Test runs: pushing code changes triggers a run automatically.
     # Commits made by the workflow itself (GITHUB_TOKEN) never re-trigger.
   schedule:
-    # Every 30 min, 07:00-19:30 UTC (= 8am-8:30pm UK in summer, 7am-7:30pm in winter)
-    - cron: "0,30 7-19 * * *"
+    # Every 30 min, 12:00-19:30 UTC (after lunchtime)
+    - cron: "0,30 12-19 * * *"
 
 concurrency:
   group: leaderboard

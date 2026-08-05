@@ -597,8 +597,8 @@
       "scraped_at": "2026-08-04T08:32:50+01:00"
     },
     "2026-08-05": {
-      "alex": 3.5,
-      "liz": 4.5,
+      "alex": 4.5,
+      "liz": 3.5,
       "source": "scraped",
       "complete": false,
       "detail": {
@@ -616,7 +616,7 @@
         },
         "queens": {
           "alex_time": 35,
-          "liz_time": 60,
+          "liz_time": null,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
@@ -646,14 +646,14 @@
         },
         "total-time": {
           "alex_total_seconds": 370,
-          "liz_total_seconds": 228,
+          "liz_total_seconds": 168,
           "alex_missing": 0,
-          "liz_missing": 0,
-          "alex_pts": 0.0,
-          "liz_pts": 1.0
+          "liz_missing": 1,
+          "alex_pts": 1.0,
+          "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-05T14:51:23+01:00"
+      "scraped_at": "2026-08-05T15:24:37+01:00"
     }
   },
   "published": {

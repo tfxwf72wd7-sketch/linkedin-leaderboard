@@ -774,63 +774,63 @@
       "scraped_at": "2026-08-07T14:17:38+01:00"
     },
     "2026-08-08": {
-      "alex": 8.0,
-      "liz": 0.0,
+      "alex": 5.0,
+      "liz": 3.0,
       "source": "scraped",
-      "complete": false,
+      "complete": true,
       "detail": {
         "tango": {
           "alex_time": 42,
-          "liz_time": null,
+          "liz_time": 127,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "zip": {
           "alex_time": 20,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 12,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "queens": {
           "alex_time": 86,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 44,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "mini-sudoku": {
           "alex_time": 100,
-          "liz_time": null,
+          "liz_time": 119,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "crossclimb": {
           "alex_time": 121,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 85,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "patches": {
           "alex_time": 38,
-          "liz_time": null,
+          "liz_time": 40,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "pinpoint": {
           "alex_rank": 1,
-          "liz_rank": null,
+          "liz_rank": 3,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "total-time": {
           "alex_total_seconds": 407,
-          "liz_total_seconds": null,
+          "liz_total_seconds": 427,
           "alex_missing": 0,
-          "liz_missing": 6,
+          "liz_missing": 0,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-08T09:57:14+01:00"
+      "scraped_at": "2026-08-08T11:43:44+01:00"
     }
   },
   "published": {
@@ -844,6 +844,7 @@
     "2026-08-04": "final",
     "2026-08-05": "partial",
     "2026-08-06": "partial",
-    "2026-08-07": "final"
+    "2026-08-07": "final",
+    "2026-08-08": "final"
   }
 }

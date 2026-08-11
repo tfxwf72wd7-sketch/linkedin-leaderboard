@@ -951,8 +951,8 @@
       "scraped_at": "2026-08-10T09:30:00+01:00"
     },
     "2026-08-11": {
-      "alex": 3.0,
-      "liz": 5.0,
+      "alex": 5.0,
+      "liz": 3.0,
       "source": "scraped",
       "complete": false,
       "detail": {
@@ -964,9 +964,9 @@
         },
         "zip": {
           "alex_time": 12,
-          "liz_time": 11,
-          "alex_pts": 0.0,
-          "liz_pts": 1.0
+          "liz_time": null,
+          "alex_pts": 1.0,
+          "liz_pts": 0.0
         },
         "queens": {
           "alex_time": 16,
@@ -1000,14 +1000,14 @@
         },
         "total-time": {
           "alex_total_seconds": 203,
-          "liz_total_seconds": 168,
+          "liz_total_seconds": 157,
           "alex_missing": 0,
-          "liz_missing": 0,
-          "alex_pts": 0.0,
-          "liz_pts": 1.0
+          "liz_missing": 1,
+          "alex_pts": 1.0,
+          "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-11T20:11:12+01:00"
+      "scraped_at": "2026-08-11T21:11:11+01:00"
     }
   },
   "published": {

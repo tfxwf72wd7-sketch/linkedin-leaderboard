@@ -1229,7 +1229,7 @@
           "liz_pts": 1.0
         },
         "pinpoint": {
-          "alex_rank": 2,
+          "alex_rank": 3,
           "liz_rank": null,
           "alex_pts": 1.0,
           "liz_pts": 0.0
@@ -1243,7 +1243,7 @@
           "liz_pts": 1.0
         }
       },
-      "scraped_at": "2026-08-15T15:54:21+01:00"
+      "scraped_at": "2026-08-15T16:27:38+01:00"
     }
   },
   "published": {

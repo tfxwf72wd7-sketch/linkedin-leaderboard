@@ -1495,7 +1495,7 @@
         },
         "zip": {
           "alex_time": 18,
-          "liz_time": 99,
+          "liz_time": null,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
@@ -1531,14 +1531,14 @@
         },
         "total-time": {
           "alex_total_seconds": 247,
-          "liz_total_seconds": 340,
+          "liz_total_seconds": 241,
           "alex_missing": 0,
-          "liz_missing": 0,
+          "liz_missing": 1,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-20T11:00:22+01:00"
+      "scraped_at": "2026-08-20T14:00:35+01:00"
     }
   },
   "published": {

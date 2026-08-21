@@ -1541,10 +1541,10 @@
       "scraped_at": "2026-08-20T20:36:15+01:00"
     },
     "2026-08-21": {
-      "alex": 5.5,
-      "liz": 1.5,
+      "alex": 6.0,
+      "liz": 2.0,
       "source": "scraped",
-      "complete": false,
+      "complete": true,
       "detail": {
         "tango": {
           "alex_time": 28,
@@ -1583,10 +1583,10 @@
           "liz_pts": 0.0
         },
         "pinpoint": {
-          "alex_rank": null,
-          "liz_rank": null,
-          "alex_pts": 0.0,
-          "liz_pts": 0.0
+          "alex_rank": 3,
+          "liz_rank": 3,
+          "alex_pts": 0.5,
+          "liz_pts": 0.5
         },
         "total-time": {
           "alex_total_seconds": 205,
@@ -1597,7 +1597,7 @@
           "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-21T17:41:08+01:00"
+      "scraped_at": "2026-08-21T18:12:47+01:00"
     }
   },
   "published": {
@@ -1624,6 +1624,7 @@
     "2026-08-17": "final",
     "2026-08-18": "partial",
     "2026-08-19": "partial",
-    "2026-08-20": "partial"
+    "2026-08-20": "partial",
+    "2026-08-21": "final"
   }
 }

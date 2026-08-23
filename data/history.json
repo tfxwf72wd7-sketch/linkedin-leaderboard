@@ -1659,16 +1659,16 @@
       "scraped_at": "2026-08-22T20:49:59+01:00"
     },
     "2026-08-23": {
-      "alex": 6.5,
-      "liz": 1.5,
+      "alex": 5.5,
+      "liz": 2.5,
       "source": "scraped",
       "complete": false,
       "detail": {
         "tango": {
           "alex_time": 63,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 58,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "zip": {
           "alex_time": 53,
@@ -1678,7 +1678,7 @@
         },
         "queens": {
           "alex_time": 119,
-          "liz_time": null,
+          "liz_time": 136,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
@@ -1708,14 +1708,14 @@
         },
         "total-time": {
           "alex_total_seconds": 584,
-          "liz_total_seconds": 308,
+          "liz_total_seconds": 502,
           "alex_missing": 0,
-          "liz_missing": 3,
+          "liz_missing": 1,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-08-23T16:28:20+01:00"
+      "scraped_at": "2026-08-23T16:52:00+01:00"
     }
   },
   "published": {

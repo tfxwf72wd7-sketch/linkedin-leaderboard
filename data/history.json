@@ -2249,63 +2249,63 @@
       "scraped_at": "2026-09-01T00:18:19+01:00"
     },
     "2026-09-02": {
-      "alex": 8.0,
-      "liz": 0.0,
+      "alex": 1.0,
+      "liz": 7.0,
       "source": "scraped",
-      "complete": false,
+      "complete": true,
       "detail": {
         "tango": {
           "alex_time": 28,
-          "liz_time": null,
+          "liz_time": 34,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "zip": {
           "alex_time": 37,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 12,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "queens": {
           "alex_time": 23,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 12,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "mini-sudoku": {
           "alex_time": 66,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 57,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "crossclimb": {
           "alex_time": 66,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 57,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "patches": {
           "alex_time": 17,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 12,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "pinpoint": {
           "alex_rank": 2,
-          "liz_rank": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_rank": 1,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "total-time": {
           "alex_total_seconds": 237,
-          "liz_total_seconds": null,
+          "liz_total_seconds": 184,
           "alex_missing": 0,
-          "liz_missing": 6,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_missing": 0,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         }
       },
-      "scraped_at": "2026-09-02T10:30:55+01:00"
+      "scraped_at": "2026-09-02T10:45:33+01:00"
     }
   },
   "published": {
@@ -2343,6 +2343,7 @@
     "2026-08-29": "partial",
     "2026-08-30": "final",
     "2026-08-31": "final",
-    "2026-09-01": "final"
+    "2026-09-01": "final",
+    "2026-09-02": "final"
   }
 }

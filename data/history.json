@@ -2898,46 +2898,46 @@
       "scraped_at": "2026-09-12T10:52:00+01:00"
     },
     "2026-09-13": {
-      "alex": 8.0,
-      "liz": 0.0,
+      "alex": 6.5,
+      "liz": 1.5,
       "source": "scraped",
       "complete": false,
       "detail": {
         "tango": {
           "alex_time": 51,
-          "liz_time": null,
+          "liz_time": 53,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "zip": {
           "alex_time": 27,
-          "liz_time": null,
+          "liz_time": 114,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "queens": {
           "alex_time": 130,
-          "liz_time": null,
+          "liz_time": 192,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "mini-sudoku": {
           "alex_time": 60,
-          "liz_time": null,
+          "liz_time": 86,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         },
         "crossclimb": {
           "alex_time": 120,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 120,
+          "alex_pts": 0.5,
+          "liz_pts": 0.5
         },
         "patches": {
           "alex_time": 62,
-          "liz_time": null,
-          "alex_pts": 1.0,
-          "liz_pts": 0.0
+          "liz_time": 42,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
         },
         "pinpoint": {
           "alex_rank": 2,
@@ -2947,14 +2947,14 @@
         },
         "total-time": {
           "alex_total_seconds": 450,
-          "liz_total_seconds": null,
+          "liz_total_seconds": 607,
           "alex_missing": 0,
-          "liz_missing": 6,
+          "liz_missing": 0,
           "alex_pts": 1.0,
           "liz_pts": 0.0
         }
       },
-      "scraped_at": "2026-09-13T22:21:27+01:00"
+      "scraped_at": "2026-09-13T23:45:04+01:00"
     }
   },
   "published": {
@@ -3003,6 +3003,7 @@
     "2026-09-09": "final",
     "2026-09-10": "partial",
     "2026-09-11": "final",
-    "2026-09-12": "final"
+    "2026-09-12": "final",
+    "2026-09-13": "partial"
   }
 }

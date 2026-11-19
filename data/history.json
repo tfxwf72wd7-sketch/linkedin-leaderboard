@@ -6849,6 +6849,65 @@
         }
       },
       "scraped_at": "2026-11-18T11:58:40+00:00"
+    },
+    "2026-11-19": {
+      "alex": 2.5,
+      "liz": 5.5,
+      "source": "scraped",
+      "complete": true,
+      "detail": {
+        "tango": {
+          "alex_time": 26,
+          "liz_time": 18,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
+        },
+        "zip": {
+          "alex_time": 30,
+          "liz_time": 26,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
+        },
+        "queens": {
+          "alex_time": 33,
+          "liz_time": 33,
+          "alex_pts": 0.5,
+          "liz_pts": 0.5
+        },
+        "mini-sudoku": {
+          "alex_time": 59,
+          "liz_time": 96,
+          "alex_pts": 1.0,
+          "liz_pts": 0.0
+        },
+        "crossclimb": {
+          "alex_time": 99,
+          "liz_time": 42,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
+        },
+        "patches": {
+          "alex_time": 76,
+          "liz_time": 45,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
+        },
+        "pinpoint": {
+          "alex_rank": 3,
+          "liz_rank": 4,
+          "alex_pts": 1.0,
+          "liz_pts": 0.0
+        },
+        "total-time": {
+          "alex_total_seconds": 323,
+          "liz_total_seconds": 260,
+          "alex_missing": 0,
+          "liz_missing": 0,
+          "alex_pts": 0.0,
+          "liz_pts": 1.0
+        }
+      },
+      "scraped_at": "2026-11-19T12:42:36+00:00"
     }
   },
   "published": {
@@ -6962,6 +7021,7 @@
     "2026-11-15": "final",
     "2026-11-16": "final",
     "2026-11-17": "final",
-    "2026-11-18": "final"
+    "2026-11-18": "final",
+    "2026-11-19": "final"
   }
 }
